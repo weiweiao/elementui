@@ -54,7 +54,7 @@
                     :data="tableData"
                     border
                     style="width: 100%"
-                    max-height="480"
+                    :max-height="cliH"
                    >
                 <el-table-column prop="xuhao"
                                  label="序号"
@@ -174,6 +174,7 @@
                 tableData:[{}],
                 options:[{value:'0',label:'已删除'},{value:'1',label:'未删除'}],
                 value0:'',
+                cliH:0,
                 //添加部分
                 ruleForm: {
                     warehouseName: '',
@@ -422,6 +423,8 @@
             },
         },
         created() {
+            console.log(document.getElementsByClassName("nav")[0].clientHeight)
+            this.cliH = (document.body.clientHeight - document.getElementsByClassName("nav")[0].clientHeight);
             this.isDelete='删除';
             this.value0="1";
             this.ajax("1",1);
